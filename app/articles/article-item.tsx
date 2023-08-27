@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { PLACEHOLDER_COVER, UMT_SOURCE } from '@/constants';
-import { Article } from '@/types';
+import { Article } from '@/type/article';
 import { cn, formatToDate, obj2QueryString } from '@/utils';
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
 };
 
 export default function ArticleItem({ article, umtSource }: Props) {
-  const articleUrl = `/articles/${article.friendlyUrl}${
+  const articleUrl = `/articles/${article.friendly_url}${
     umtSource
       ? obj2QueryString({
           [UMT_SOURCE]: umtSource,
@@ -44,7 +44,7 @@ export default function ArticleItem({ article, umtSource }: Props) {
             'text-gray-500 dark:text-gray-400',
           )}
         >
-          {formatToDate(new Date(article.createdAt))}
+          {formatToDate(new Date(article.created_at))}
         </div>
       </div>
       <div className="flex flex-col space-y-2 md:flex-1">
@@ -59,7 +59,7 @@ export default function ArticleItem({ article, umtSource }: Props) {
                 'text-sm font-medium ',
                 'text-primary-500 hover:text-primary-600 dark:hover:text-primary-400',
               )}
-              href={`/tags/${tag.friendlyUrl}`}
+              href={`/tags/${tag.friendly_url}`}
             >
               {tag.name}
             </Link>

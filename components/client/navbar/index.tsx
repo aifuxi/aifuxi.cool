@@ -24,27 +24,6 @@ const baseNavItems: NavItem[] = [
     label: '标签',
     link: '/tags',
   },
-  // {
-  //   label: '视频',
-  //   link: '/videos',
-  // },
-  // {
-  //   label: '项目',
-  //   link: '/projects',
-  // },
-
-  {
-    label: '留言',
-    link: '/message-board',
-  },
-  {
-    label: '日志',
-    link: '/logs',
-  },
-  {
-    label: '归档',
-    link: '/archive',
-  },
   {
     label: '关于',
     link: '/about',

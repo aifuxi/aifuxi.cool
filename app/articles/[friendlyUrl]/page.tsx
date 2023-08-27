@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { getServerSideArticleByFriendlyUrl } from '@/app/fetch-data';
+import { getArticleByFriendlyUrl } from '@/app/fetch-data';
 import { BytemdViewer, GiscusComment } from '@/components/client';
 import { PageTitle } from '@/components/rsc';
 import { PLACEHOLDER_COVER } from '@/constants';
@@ -17,7 +17,7 @@ export async function generateMetadata({
 }: {
   params: { friendlyUrl: string };
 }): Promise<Metadata> {
-  const data = await getServerSideArticleByFriendlyUrl(params.friendlyUrl);
+  const data = await getArticleByFriendlyUrl(params.friendlyUrl);
   const title = data.data?.title || '文章未找到';
   return {
     title,
@@ -29,7 +29,7 @@ export default async function ArticleDetailPage({
 }: {
   params: { friendlyUrl: string };
 }) {
-  const data = await getServerSideArticleByFriendlyUrl(params.friendlyUrl);
+  const data = await getArticleByFriendlyUrl(params.friendlyUrl);
   const currentArticle = data.data;
 
   if (isNil(currentArticle)) {
@@ -49,7 +49,7 @@ export default async function ArticleDetailPage({
         />
       </div>
       <div className="text-center text-base font-medium leading-6 tracking-wider text-gray-500">
-        {formatToDateTime(currentArticle.createdAt)}
+        {formatToDateTime(currentArticle.created_at)}
       </div>
       <PageTitle
         title={currentArticle.title}
@@ -75,7 +75,7 @@ export default async function ArticleDetailPage({
                 <Link
                   key={tag.id}
                   className="mr-4 mb-2 text-sm font-medium text-primary-500 hover:text-primary-600 dark:hover:text-primary-400"
-                  href={`/tags/${tag.friendlyUrl}`}
+                  href={`/tags/${tag.friendly_url}`}
                 >
                   {tag.name}
                 </Link>
@@ -85,7 +85,7 @@ export default async function ArticleDetailPage({
           <div className="pt-4">
             <div className="font-semibold text-gray-500 mb-4">最近更新时间</div>
             <div className="text-sm leading-6 tracking-wider text-gray-500">
-              {formatToDateTime(currentArticle.updatedAt, true)}
+              {formatToDateTime(currentArticle.updated_at, true)}
             </div>
           </div>
           <div

@@ -1,10 +1,9 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-import { getServerSideTags } from '@/app/fetch-data';
+import { getTags } from '@/app/fetch-data';
 import { GiscusComment } from '@/components/client';
 import { PageTitle } from '@/components/rsc';
-import { DEFAULT_PAGE, MAX_PAGE_SIZE } from '@/constants';
 import { cn } from '@/utils';
 
 export const metadata: Metadata = {
@@ -14,12 +13,8 @@ export const metadata: Metadata = {
 export const revalidate = 60;
 
 export default async function TagsPage() {
-  const data = await getServerSideTags({
-    page: DEFAULT_PAGE,
-    pageSize: MAX_PAGE_SIZE,
-  });
-
-  const tags = data.data;
+  const res = await getTags();
+  const tags = res?.data;
 
   return (
     <>
@@ -55,7 +50,7 @@ export default async function TagsPage() {
                 'mr-4 mb-4 text-sm font-medium text-primary-500 ',
                 'hover:text-primary-600 dark:hover:text-primary-400',
               )}
-              href={`/tags/${tag.friendlyUrl}`}
+              href={`/tags/${tag.friendly_url}`}
             >
               {tag.name}
               <span
@@ -64,7 +59,7 @@ export default async function TagsPage() {
                   'text-gray-500 dark:text-gray-400',
                 )}
               >
-                ({tag.articleCount || 0})
+                ({tag.article_count || 0})
               </span>
             </Link>
           </li>

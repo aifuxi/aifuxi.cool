@@ -2,11 +2,11 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 import { PageTitle } from '@/components/rsc';
-import { DEFAULT_PAGE, LATEST_ARTICLES_PAGE_SIZE, NICKNAME } from '@/constants';
+import { NICKNAME } from '@/constants';
 import { cn } from '@/utils';
 
 import ArticleItem from './articles/article-item';
-import { getServerSideArticles } from './fetch-data';
+import { getArticles } from './fetch-data';
 
 export const revalidate = 60;
 
@@ -16,11 +16,7 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const res = await getServerSideArticles({
-    page: DEFAULT_PAGE,
-    published: true,
-    pageSize: LATEST_ARTICLES_PAGE_SIZE,
-  });
+  const res = await getArticles();
   const articles = res?.data;
 
   return (

@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
-import { getServerSideArticles } from '@/app/fetch-data';
+import { getArticles } from '@/app/fetch-data';
 import { PageTitle, Pagination } from '@/components/rsc';
-import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE } from '@/constants';
+import { DEFAULT_PAGE } from '@/constants';
 
 import ArticleItem from './article-item';
 import EmptyArticleList from './empty-article-list';
@@ -13,11 +13,7 @@ export const metadata: Metadata = {
 export const revalidate = 60;
 
 export default async function ArticlesPage() {
-  const res = await getServerSideArticles({
-    page: DEFAULT_PAGE,
-    published: true,
-    pageSize: DEFAULT_PAGE_SIZE,
-  });
+  const res = await getArticles();
   const articles = res?.data;
   const total = res?.total || 0;
 

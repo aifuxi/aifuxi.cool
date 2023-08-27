@@ -23,6 +23,10 @@ const nextConfig = {
         protocol: 'http',
         hostname: 'placehold.co',
       },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
     ],
   },
 };

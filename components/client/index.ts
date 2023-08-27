@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 
 import BackToTop from './back-to-top';
-import { BytemdEditor, BytemdViewer } from './bytemd';
+import { BytemdViewer } from './bytemd';
 import EmailDialog from './email-dialog';
 import EmptyPage from './empty-page';
 import Navbar from './navbar';
@@ -20,7 +20,6 @@ const GiscusComment = dynamic(
 );
 
 export {
-  BytemdEditor,
   BytemdViewer,
   Navbar,
   ClientPagination,
