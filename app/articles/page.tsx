@@ -1,8 +1,7 @@
 import { Metadata } from 'next';
 
 import { getArticles } from '@/app/fetch-data';
-import { PageTitle, Pagination } from '@/components/rsc';
-import { DEFAULT_PAGE } from '@/constants';
+import { PageTitle } from '@/components/rsc';
 
 import ArticleItem from './article-item';
 import EmptyArticleList from './empty-article-list';
@@ -42,7 +41,6 @@ export default async function ArticlesPage() {
             </li>
           ))}
         </ul>
-        <Pagination currentPage={DEFAULT_PAGE} total={total} />
       </>
     );
   }

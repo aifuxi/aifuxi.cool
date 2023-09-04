@@ -5,7 +5,6 @@ import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { Logo } from '@/components/rsc';
 import { NavItem } from '@/types';
 import { cn } from '@/utils';
 
@@ -37,12 +36,10 @@ export default function Navbar() {
   return (
     <div
       className={cn(
-        'py-10 flex justify-between items-center sticky top-0 z-10 ',
+        'py-10 flex justify-end items-center sticky top-0 z-10 ',
         'bg-white dark:bg-gray-900',
       )}
     >
-      <Logo />
-
       <div className="flex items-center">
         <ul className={cn('hidden md:flex md:space-x-6')}>
           {baseNavItems.map((item) => (

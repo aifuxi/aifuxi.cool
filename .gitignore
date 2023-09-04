@@ -41,3 +41,6 @@ next-env.d.ts
 
 # prisma sqlite文件
 /prisma/data.db
+
+# editor fiel
+/.idea/
