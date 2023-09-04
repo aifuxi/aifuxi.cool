@@ -5,8 +5,7 @@ import { BytemdViewer } from './bytemd';
 import EmailDialog from './email-dialog';
 import EmptyPage from './empty-page';
 import Navbar from './navbar';
-import ClientPagination from './pagination/client-pagination';
-import { AnalyticsProvider, AuthProvider, ToastProvider } from './provider';
+import { AnalyticsProvider, ToastProvider } from './provider';
 
 /**
  * 因为这个组件里面用到了window对象，正常情况下使用ssr会在服务端进行预渲染，
@@ -22,8 +21,6 @@ const GiscusComment = dynamic(
 export {
   BytemdViewer,
   Navbar,
-  ClientPagination,
-  AuthProvider,
   AnalyticsProvider,
   ToastProvider,
   EmptyPage,

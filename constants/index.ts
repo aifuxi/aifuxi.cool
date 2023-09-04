@@ -8,7 +8,6 @@ import {
   NICKNAME,
   WEBSITE,
 } from './info';
-import { authOptions } from './next-auth';
 import {
   DEFAULT_PAGE,
   DEFAULT_PAGE_SIZE,
@@ -43,7 +42,6 @@ export {
   LATEST_ARTICLES_PAGE_SIZE,
   MAX_PAGE_SIZE,
   HttpMethod,
-  authOptions,
   DOMAIN,
   UMT_SOURCE,
 };

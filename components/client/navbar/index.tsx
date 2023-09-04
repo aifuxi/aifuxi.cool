@@ -1,14 +1,10 @@
 'use client';
 
-import { useBoolean } from 'ahooks';
-import { Menu, X } from 'lucide-react';
+import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 
 import { NavItem } from '@/types';
 import { cn } from '@/utils';
-
-import ThemeSwitcher from '../theme-switcher';
 
 const baseNavItems: NavItem[] = [
   {
@@ -30,69 +26,37 @@ const baseNavItems: NavItem[] = [
 ];
 
 export default function Navbar() {
-  const [state, { setTrue, setFalse }] = useBoolean(false);
-  const pathname = usePathname();
-
   return (
     <div
       className={cn(
-        'py-10 flex justify-end items-center sticky top-0 z-10 ',
-        'bg-white dark:bg-gray-900',
+        'sticky top-0 h-[80px] border-b flex justify-center items-center',
       )}
     >
-      <div className="flex items-center">
-        <ul className={cn('hidden md:flex md:space-x-6')}>
-          {baseNavItems.map((item) => (
-            <li key={item.link}>
+      <nav className="max-w-[1400px] w-full">
+        <div className="flex justify-between h-[40px] border-1">
+          <h2 className="flex items-center font-bold text-lg">AIFUXI</h2>
+          <div className={'flex gap-8'}>
+            {baseNavItems.map((item) => (
               <Link
+                key={item.link}
                 href={item.link}
-                className={cn(
-                  'flex items-center h-[56px]  font-semibold underline-offset-4 tracking-widest  transition-colors ',
-                  'hover:text-gray-800 dark:hover:text-white hover:underline',
-                  'text-gray-500 dark:text-gray-400',
-                  pathname === item.link &&
-                    'text-gray-800 dark:text-white underline',
-                  'text-lg lg:text-xl',
-                )}
+                className={'flex items-center text-lg font-semibold relative'}
               >
-                {item.label}
+                <motion.div
+                  className="bg-black/0 absolute inset-0"
+                  initial={{ transform: 'scale(-1)' }}
+                  whileHover={{
+                    backgroundColor: 'rgb(0 0 0 / 0.05)',
+                    borderRadius: 8,
+                    transform: 'scale(1)',
+                  }}
+                />
+                <div className="py-1.5 px-4">{item.label}</div>
               </Link>
-            </li>
-          ))}
-        </ul>
-
-        <ThemeSwitcher className="ml-4" />
-
-        <button className="md:hidden ml-4">
-          <Menu size={36} onClick={setTrue} />
-        </button>
-      </div>
-
-      <div
-        className={cn(
-          'fixed top-0 left-0 z-50 w-full h-full transform opacity-95 bg-gray-200 duration-300 ease-in-out',
-          state ? 'translate-x-0' : 'translate-x-full',
-        )}
-      >
-        <div className="py-12 pr-4 flex items-center justify-end">
-          <button onClick={setFalse} className="text-gray-900">
-            <X size={40} />
-          </button>
+            ))}
+          </div>
         </div>
-        <ul className="flex flex-col space-y-8 px-12">
-          {baseNavItems.map((item) => (
-            <li key={item.link}>
-              <Link
-                href={item.link}
-                onClick={setFalse}
-                className="text-2xl font-bold tracking-widest text-gray-900"
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+      </nav>
     </div>
   );
 }

@@ -1,13 +1,6 @@
 import { Metadata } from 'next';
-import { Session } from 'next-auth';
 
-import {
-  AnalyticsProvider,
-  AuthProvider,
-  BackToTop,
-  Navbar,
-  ToastProvider,
-} from '@/components/client';
+import { AnalyticsProvider, Navbar } from '@/components/client';
 import { Footer } from '@/components/rsc';
 import { WEBSITE } from '@/constants';
 import '@/styles/global.scss';
@@ -22,10 +15,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  session,
 }: {
   children: React.ReactNode;
-  session: Session;
 }) {
   return (
     <html lang="zh-CN" suppressHydrationWarning>
@@ -69,25 +60,12 @@ export default function RootLayout({
         {/* 打开外部链接时，以新开tab的方式打开 */}
         <base target="_blank" />
       </head>
-      <body
-        className={cn(
-          'debug-screens antialiased min-w-[360px]',
-          'bg-white dark:bg-gray-900',
-          'text-black dark:text-white ',
-        )}
-      >
-        <ToastProvider>
-          <AuthProvider session={session}>
-            <AnalyticsProvider>
-              <div className="container">
-                <Navbar />
-                {children}
-                <Footer />
-              </div>
-              <BackToTop />
-            </AnalyticsProvider>
-          </AuthProvider>
-        </ToastProvider>
+      <body className={cn('debug-screens antialiased', 'bg-white text-black')}>
+        <AnalyticsProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </AnalyticsProvider>
       </body>
     </html>
   );

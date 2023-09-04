@@ -2,25 +2,9 @@
 
 import React from 'react';
 
-import { Session } from 'next-auth';
-import { SessionProvider } from 'next-auth/react';
 import Script from 'next/script';
 
 import { Toaster } from '@/components/ui/toaster';
-
-type Props = {
-  children?: React.ReactNode;
-  session: Session;
-};
-
-export const AuthProvider = ({ children, session }: Props) => {
-  return (
-    <SessionProvider session={session}>
-      {children}
-      <Toaster />
-    </SessionProvider>
-  );
-};
 
 export const AnalyticsProvider = ({
   children,
